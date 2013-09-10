@@ -22,22 +22,10 @@ describe ChattyError do
     end
 
     context 'configure default scope' do
-      before :all do
-        BarError.configure do |config|
-          config.default_scope = :other_scope
-        end
-      end
-
       it { expect(BarError.configuration.default_scope).to eq :other_scope }
     end
 
     context 'configure default message' do
-      before :all do
-        BarError.configure do |config|
-          config.default_message = "error"
-        end
-      end
-
       it { expect(BarError.configuration.default_message).to eq "error" }
     end
   end

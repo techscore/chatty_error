@@ -21,6 +21,11 @@ end
 
 class BarError < StandardError
   include ChattyError
+
+  configure do |c|
+    c.default_scope = :other_scope
+    c.default_message = "error"
+  end
 end
 
 class BazError < StandardError
