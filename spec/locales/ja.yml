@@ -7,8 +7,10 @@ ja:
       base: "error: base(hoge_hoge_error)"
   my_errors:
     base_error:
-      base: "This message is not selected"
+      base: "error: base(piyo_error)"
     hoge_error:
       hoge1: "error: hoge1"
     piyo_error:
       piyopiyo: "error: piyopiyo"
+    piyo_piyo_error:
+      base: "error: base(piyo_piyo_error)"

@@ -63,4 +63,13 @@ end
 
 class PiyoError < BaseError
   caused_by :piyopiyo
+
+  configure do |c|
+    c.default_scope = 'my_errors'
+    c.default_message = 'p_error'
+  end
+end
+
+class PiyoPiyoError < PiyoError
+  caused_by :base
 end

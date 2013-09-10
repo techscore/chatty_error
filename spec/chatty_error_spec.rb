@@ -88,13 +88,6 @@ describe ChattyError do
     end
 
     context 'specific configuration' do
-      before :all do
-        PiyoError.configure do |c|
-          c.default_scope = 'my_errors'
-          c.default_message = 'p_error'
-        end
-      end
-
       context 'in yml' do
         it { expect(BaseError.error_message(BaseError.name, :base)).to eq I18n.t('chatty_errors.base_error.base') }
         it { expect(PiyoError.error_message(PiyoError.name, :piyopiyo)).to eq I18n.t('my_errors.piyo_error.piyopiyo') }
@@ -132,13 +125,17 @@ describe ChattyError do
     end
 
     context 'error message' do 
-      it  { expect(BaseError.base.message).to eq I18n.t('chatty_errors.base_error.base') }
-      it  { expect(HogeError.base.message).to eq I18n.t('chatty_errors.base_error.base') }
-      it  { expect(HogeError.hoge1.message).to eq I18n.t('chatty_errors.default') }
-      it  { expect(HogeError.hoge2.message).to eq I18n.t('chatty_errors.default') }
-      it  { expect(HogeHogeError.base.message).to eq I18n.t('chatty_errors.hoge_hoge_error.base') }
-      it  { expect(HogeHogeError.hoge1.message).to eq I18n.t('chatty_errors.default') }
-      it  { expect(HogeHogeError.hoge2.message).to eq I18n.t('chatty_errors.default') }
+      it{ expect(BaseError.base.message).to eq I18n.t('chatty_errors.base_error.base') }
+      it{ expect(HogeError.base.message).to eq I18n.t('chatty_errors.base_error.base') }
+      it { expect(HogeError.hoge1.message).to eq I18n.t('chatty_errors.default') }
+      it { expect(HogeError.hoge2.message).to eq I18n.t('chatty_errors.default') }
+      it { expect(HogeHogeError.base.message).to eq I18n.t('chatty_errors.hoge_hoge_error.base') }
+      it { expect(HogeHogeError.hoge1.message).to eq I18n.t('chatty_errors.default') }
+      it { expect(HogeHogeError.hoge2.message).to eq I18n.t('chatty_errors.default') }
+      it { expect(PiyoError.base.message).to eq I18n.t('my_errors.base_error.base') }
+      it { expect(PiyoError.piyopiyo.message).to eq I18n.t('my_errors.piyo_error.piyopiyo') }
+      it { expect(PiyoPiyoError.base.message).to eq I18n.t('my_errors.piyo_piyo_error.base') }
+      it { expect(PiyoPiyoError.piyopiyo.message).to eq I18n.t('my_errors.piyo_error.piyopiyo') }
     end
   end
 end
