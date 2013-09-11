@@ -1,6 +1,6 @@
 # ChattyError
 
-TODO: Write a gem description
+'chatty_error' helps you create error with message easily. An error message is loaded from i18n locale file.
 
 ## Installation
 
@@ -16,9 +16,48 @@ Or install it yourself as:
 
     $ gem install chatty_error
 
-## Usage
+## Examples
 
-TODO: Write usage instructions here
+my_error.rb
+
+    class MyError < StandardError
+      include ChattyError
+
+      caused_by :file_not_found, :user_disabled
+    end
+
+en.yml
+
+    en:
+      chatty_errors:
+        my_error:
+          file_not_found: "File not found!!!"
+          user_disabled: "User disabled!!!"
+
+model.rb
+
+    class Model
+      def exist?(file_path)
+        unless File.exist?(file_path)
+          raise MyError.file_not_found
+        end
+
+        # some code ...
+
+      rescue MyError => e
+        puts e.message # => File not found!!! (autoload from en.yml)
+      end
+
+      def authenticate(user)
+        if user.disabled?
+          raise MyError.user_disabled
+        end
+
+        # some code ...
+      rescue MyError => e
+        puts e.message # => User disabled!!! (autoload from en.yml)
+      end
+    end
 
 ## Contributing
 

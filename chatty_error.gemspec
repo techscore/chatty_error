@@ -7,11 +7,13 @@ Gem::Specification.new do |spec|
   spec.name          = "chatty_error"
   spec.version       = ChattyError::VERSION
   spec.authors       = ["Kentaro Kawano"]
-  spec.email         = ["kawano.kentaro@synergy101.jp"]
+  spec.email         = ["info@techscore.com"]
   spec.description   = %q{'chatty_error' helps you create error with message easily. An error message is loaded from i18n locale file.}
   spec.summary       = %q{'chatty_error' helps you create error with message easily.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/techscore/chatty_error"
   spec.license       = "The BSD 3-Clause License"
+
+  spec.required_ruby_version     = '>= 1.9.3'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
