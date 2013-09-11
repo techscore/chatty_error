@@ -76,5 +76,5 @@ class PiyoError < BaseError
 end
 
 class PiyoPiyoError < PiyoError
-  caused_by :base
+  caused_by :base, :piyoooo
 end

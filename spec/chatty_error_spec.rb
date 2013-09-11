@@ -13,6 +13,8 @@ describe ChattyError do
       it { expect(FooError.methods.include?(:caused_by)).to be true }
       it { expect(FooError.new.methods.include?(:cause)).to be true }
       it { expect(FooError.new.methods.include?(:cause=)).to be true }
+      it { expect(FooError.new.methods.include?(:options)).to be true }
+      it { expect(FooError.new.methods.include?(:options=)).to be true }
     end
   end
 
@@ -113,8 +115,8 @@ describe ChattyError do
     end
 
     context 'error message' do 
-      it{ expect(BaseError.base.message).to eq I18n.t('chatty_errors.base_error.base') }
-      it{ expect(HogeError.base.message).to eq I18n.t('chatty_errors.base_error.base') }
+      it { expect(BaseError.base.message).to eq I18n.t('chatty_errors.base_error.base') }
+      it { expect(HogeError.base.message).to eq I18n.t('chatty_errors.base_error.base') }
       it { expect(HogeError.hoge1.message).to eq I18n.t('chatty_errors.default') }
       it { expect(HogeError.hoge2.message).to eq I18n.t('chatty_errors.default') }
       it { expect(HogeHogeError.base.message).to eq I18n.t('chatty_errors.hoge_hoge_error.base') }
@@ -124,6 +126,14 @@ describe ChattyError do
       it { expect(PiyoError.piyopiyo.message).to eq I18n.t('my_errors.piyo_error.piyopiyo') }
       it { expect(PiyoPiyoError.base.message).to eq I18n.t('my_errors.piyo_piyo_error.base') }
       it { expect(PiyoPiyoError.piyopiyo.message).to eq I18n.t('my_errors.piyo_error.piyopiyo') }
+      it { expect(PiyoPiyoError.piyoooo.message).to eq I18n.t('my_errors.piyo_piyo_error.piyoooo') }
+      it { expect(PiyoPiyoError.piyoooo(:locale => :en).message).to eq \
+           I18n.t('my_errors.piyo_piyo_error.piyoooo', :locale => :en) }
+    end
+
+    context 'cause' do
+      it { expect(BaseError.base.cause).to eq :base }
+      it { expect(HogeError.hoge1.cause).to eq :hoge1 }
     end
   end
 end

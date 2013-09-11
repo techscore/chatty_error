@@ -11,6 +11,14 @@ module ChattyError
     @cause = cause
   end
 
+  def options
+    @options
+  end
+
+  def options=(options)
+    @options = options
+  end
+
   module ClassMethods
     def configuration
       if @configuration.nil? && self.superclass.methods.include?(:configuration)
@@ -39,20 +47,22 @@ module ChattyError
       [underscore(class_name), method_name.to_s.downcase].join('.')
     end
 
-    def error_message(name, method_name)
+    def error_message(name, method_name, options={})
       key = generate_key(name, method_name)
       I18n.t(key,
              :scope => configuration.default_scope,
-             :default => [:default, configuration.default_message])
+             :default => [:default, configuration.default_message],
+             :locale => options[:locale])
     end
 
     def caused_by(*args)
       args.each do |method_name|
         class_name = self.name
-        define_singleton_method method_name do
-          message = self.error_message(class_name, method_name)
+        define_singleton_method method_name do |options={}|
+          message = self.error_message(class_name, method_name, options)
           e = self.new(message)
           e.cause = method_name
+          e.options = options
           return e
         end
       end
