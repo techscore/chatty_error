@@ -2,6 +2,8 @@
 
 'chatty_error' helps you create error with message easily. An error message is loaded from i18n locale file.
 
+[![Build Status](https://drone.io/github.com/techscore/chatty_error/status.png)](https://drone.io/github.com/techscore/chatty_error/latest)
+
 ## Installation
 
 Add this line to your application's Gemfile:

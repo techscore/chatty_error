@@ -4,6 +4,8 @@
 
 メッセージをロケールファイルに切り出しておくことで、国際化対応が容易になるとともに、ソースコードもすっきりします。
 
+[![Build Status](https://drone.io/github.com/techscore/chatty_error/status.png)](https://drone.io/github.com/techscore/chatty_error/latest)
+
 ## Installation
 Gemfileに以下の行を追加します。
 
